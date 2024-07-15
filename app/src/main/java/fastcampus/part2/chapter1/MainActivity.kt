@@ -7,17 +7,28 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import fastcampus.part2.chapter1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val webView = findViewById<WebView>(R.id.webView)
-        webView.webViewClient = WebViewClient()
-        webView.settings.javaScriptEnabled = true // 기본값: false
+        binding.btn1.setOnClickListener{
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainer, WebViewFragment())
+                commit()
+            } //fragment관리 기능
 
-        webView.loadUrl("https://google.com")
+        }
+        binding.btn2.setOnClickListener{
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.fragmentContainer, BFragment())
+                commit()
+            } //fragment관리 기능
+
+        }
     }
 }

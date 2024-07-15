@@ -29,5 +29,12 @@ class WebViewFragment: Fragment() {
         binding.webView.settings.javaScriptEnabled = true
         binding.webView.loadUrl("https://google.com")
     }
-
+    /* 생명주기 확인
+    override fun onStart() {
+        super.onStart()
+    }
+    override fun onStop() {
+        super.onStop()
+    }
+    */
 }
