@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
                 val textView = TextView(this@MainActivity)
                 textView.text = "position $position"
                 textView.gravity = Gravity.CENTER
+                //callback 기능 활용 가능
 
                 //위의 값들로 커스텀
                 tab.customView = textView

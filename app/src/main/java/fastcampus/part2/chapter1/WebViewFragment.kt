@@ -1,10 +1,12 @@
 package fastcampus.part2.chapter1
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
@@ -12,7 +14,7 @@ import androidx.fragment.app.Fragment
 import fastcampus.part2.chapter1.databinding.FragmentWebviewBinding
 
 // Fragment 상속 후 생성자 호출 -> ()
-class WebViewFragment: Fragment() {
+class WebViewFragment(private val position: Int): Fragment() {
     private lateinit var binding: FragmentWebviewBinding //fragment_webview.xml
     private lateinit var callback:OnBackPressedCallback
     override fun onCreateView(
@@ -31,6 +33,18 @@ class WebViewFragment: Fragment() {
         binding.webView.webViewClient = WebtoonWebViewClient(binding.progressBar)
         binding.webView.settings.javaScriptEnabled = true
         binding.webView.loadUrl("https://comic.naver.com/webtoon/detail?titleId=769209&no=128&week=wed")
+
+        binding.btnBackToLast.setOnClickListener{
+
+            val sharedPreference = activity?.getSharedPreferences("WEB_HISTORY", Context.MODE_PRIVATE)
+            val url = sharedPreference?.getString("tab$position","")
+            if(url.isNullOrEmpty()){
+                Toast.makeText(context,"마지막 저장 시점이 없습니다.",Toast.LENGTH_SHORT).show()
+            }else{
+                binding.webView.loadUrl(url)
+            }
+
+        }
     }
 
     //뒤로가기: onBackPressedDispatcher 사용
