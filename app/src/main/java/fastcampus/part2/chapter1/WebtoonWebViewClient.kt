@@ -9,7 +9,21 @@ import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 
-class WebtoonWebViewClient(private val progressBar:ProgressBar): WebViewClient(){
+class WebtoonWebViewClient(
+    private val progressBar:ProgressBar,
+    private val saveData:(String) -> Unit,
+): WebViewClient(){
+
+    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+        //
+        if(request != null && request.url.toString().contains("comic.naver.com/webtoon/detail")){
+           //fragment, activity없는 상태에서 sharedPreference 가져오는 방법
+
+            saveData(request.url.toString())
+        }
+
+        return super.shouldOverrideUrlLoading(view, request)
+    }
     override fun onPageFinished(view: WebView?, url: String?) {
         super.onPageFinished(view, url)
         // WebView 페이지 로드가 끝났을 때 ProgresBar가 사라짐

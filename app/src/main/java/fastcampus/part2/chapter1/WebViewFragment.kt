@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import fastcampus.part2.chapter1.databinding.FragmentWebviewBinding
 
@@ -30,7 +31,11 @@ class WebViewFragment(private val position: Int): Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.webView.webViewClient = WebtoonWebViewClient(binding.progressBar)
+        binding.webView.webViewClient = WebtoonWebViewClient(binding.progressBar){url ->
+            activity?.getSharedPreferences("WEB_HISTORY", Context.MODE_PRIVATE)?.edit {
+                putString("tab$position", url)
+            }
+        }
         binding.webView.settings.javaScriptEnabled = true
         binding.webView.loadUrl("https://comic.naver.com/webtoon/detail?titleId=769209&no=128&week=wed")
 
