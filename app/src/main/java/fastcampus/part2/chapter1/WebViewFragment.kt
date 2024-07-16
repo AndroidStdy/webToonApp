@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import fastcampus.part2.chapter1.databinding.FragmentWebviewBinding
 
 // Fragment 상속 후 생성자 호출 -> ()
-class WebViewFragment(private val position: Int): Fragment() {
+class WebViewFragment(private val position: Int, private val webViewUrl: String): Fragment() {
     private lateinit var binding: FragmentWebviewBinding //fragment_webview.xml
     private lateinit var callback:OnBackPressedCallback
     override fun onCreateView(
@@ -37,7 +37,7 @@ class WebViewFragment(private val position: Int): Fragment() {
             }
         }
         binding.webView.settings.javaScriptEnabled = true
-        binding.webView.loadUrl("https://comic.naver.com/webtoon/detail?titleId=769209&no=128&week=wed")
+        binding.webView.loadUrl(webViewUrl)
 
         binding.btnBackToLast.setOnClickListener{
 
