@@ -16,20 +16,26 @@ class WebtoonWebViewClient(private val progressBar:ProgressBar): WebViewClient()
         progressBar.visibility = View.GONE // =progressBar.isVisible = false
     }
 
-    //request를 확인 후 loading 유무 결정
-    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-        //true: 현재 URL로드를 처리했으므로 Webview가 기본적으로 URL을 로드하지 않게 함
-        //false: Webview가 기본적으로 URL을 로드하게 함
-        return false
-    }
-
     override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
         super.onPageStarted(view, url, favicon)
 
         progressBar.visibility = View.VISIBLE
     }
+    /*
+    //request를 확인 후 loading 유무 결정
+    override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+        //true: 현재 URL로드를 처리했으므로 Webview가 기본적으로 URL을 로드하지 않게 함
+        //false: Webview가 기본적으로 URL을 로드하게 함
 
-    /*override fun onReceivedError(
+        //comic.naver.com을 포함한 URL외 주소는 접근이 안됨
+        if(request != null && request.url.toString().contains("comic.naver.com"))
+            return false
+        else return true
+    } */
+    //https://comic.naver.com/webtoon/detail?titleId=769209&no=128&week=wed
+
+    /*
+    override fun onReceivedError(
         view: WebView?,
         request: WebResourceRequest?,
         error: WebResourceError?
