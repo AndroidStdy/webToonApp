@@ -27,7 +27,7 @@ class WebViewFragment: Fragment() {
 
         binding.webView.webViewClient = WebtoonWebViewClient(binding.progressBar)
         binding.webView.settings.javaScriptEnabled = true
-        binding.webView.loadUrl("https://google.com")
+        binding.webView.loadUrl("https://comic.naver.com/webtoon/detail?titleId=769209&no=128&week=wed")
     }
     /* 생명주기 확인
     override fun onStart() {
