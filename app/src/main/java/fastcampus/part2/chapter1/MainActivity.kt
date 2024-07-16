@@ -1,6 +1,7 @@
 package fastcampus.part2.chapter1
 
 import android.os.Bundle
+import android.view.Gravity
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.TextView
@@ -22,8 +23,13 @@ class MainActivity : AppCompatActivity() {
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position ->
             run {
+                val textView = TextView(this@MainActivity)
+                textView.text = "position $position"
+                textView.gravity = Gravity.CENTER
 
-                tab.text = "position $position"
+                //위의 값들로 커스텀
+                tab.customView = textView
+//                tab.text = "position $position"
             }
         }.attach()
     }
