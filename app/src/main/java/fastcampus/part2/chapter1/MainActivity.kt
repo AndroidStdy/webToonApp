@@ -16,21 +16,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btn1.setOnClickListener{
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragmentContainer, WebViewFragment())
-                commit()
-            } //fragment관리 기능
-
-        }
-        binding.btn2.setOnClickListener{
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragmentContainer, BFragment())
-                commit()
-            } //fragment관리 기능
-
-        }
+        binding.viewPager.adapter = ViewPagerAdapter(this)
     }
+
+
     /*
     //더 이상 지원X
     override fun onBackPressed() {
