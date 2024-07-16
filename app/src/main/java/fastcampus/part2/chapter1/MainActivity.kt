@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
+    /*
     //더 이상 지원X
     override fun onBackPressed() {
         val currentFragment = supportFragmentManager.fragments[0]
@@ -43,5 +43,5 @@ class MainActivity : AppCompatActivity() {
                 super.onBackPressed()
             }
         }
-    }
+    } */
 }
